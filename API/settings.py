@@ -28,8 +28,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECRET_KEY = 'django-insecure-tq2faq55n=45w^b%ovp%h7s!@me))+!mca$#*&f=pij#dg5%ig'
 SECRET_KEY=os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG","false").lower()=="true"
-# DEBUG=True
+# DEBUG = os.environ.get("DEBUG","false").lower()=="true"
+DEBUG=False
 
 # ALLOWED_HOSTS = ['localhost', '192.168.1.68:8001',
 #                  '10.0.2.2:8001', 'b0eb-2c0f-eb68-62c-9f00-b9de-ba13-67d9-164e.ngrok-free.app']
@@ -105,6 +105,7 @@ AUTH_USER_MODEL = "ProductApi.CustomUser"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -186,7 +187,7 @@ USE_TZ = True
 
 # STATIC_URL = 'API/static/'
 STATIC_URL= os.path.join(BASE_DIR, 'static/')
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
@@ -199,7 +200,7 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = "/media/"
-
+STATICFILES_STORAGE="whitenoise.storage.CompressedManifestStaticFilesStorage"
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.SessionAuthentication',  # Enable session authentication
