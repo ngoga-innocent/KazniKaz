@@ -697,7 +697,7 @@ def CreateShopCode(request):
 
 
 @api_view(['POST'])
-def VerifyCode(request):
+def ShopVerifyCode(request):
     code = request.POST.get('code')
     name = request.POST.get('name')
     # print(code, email)

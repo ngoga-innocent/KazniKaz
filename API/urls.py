@@ -79,7 +79,7 @@ urlpatterns = [
     path('api/docs/kaznikaz/version1/verify', views.VerifyCode),
     path('api/docs/kaznikaz/version1/updatepass', views.NewPassword),
     path('api/docs/kaznikaz/version1/shopcode', views.CreateShopCode),
-    path('api/docs/kaznikaz/version1/shopverify', views.VerifyCode),
+    path('api/docs/kaznikaz/version1/shopverify', views.ShopVerifyCode),
     path('api/docs/kaznikaz/version1/shoppass', views.ResetShopPassword.as_view()),
     path('api/docs/kaznikaz/version1/editShop/<int:shop_id>', views.EditShop.as_view()),
     # path('api/docs/kaznikaz/version1/verification',views.faceVerification),
