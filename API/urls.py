@@ -1,7 +1,7 @@
 
 from django.contrib import admin
 from rest_framework.routers import DefaultRouter
-from django.urls import path, include
+from django.urls import path, include,re_path
 from django.conf.urls.static import static
 from ProductApi import views
 import os
@@ -11,6 +11,7 @@ import os
 # )
 from knox import views as knox_views
 from . import settings
+from django.views.static import serve
 
 
 router = DefaultRouter()
@@ -91,7 +92,8 @@ urlpatterns = [
     path('apple-app-site-association',views.app_serve_assetlinks_json,name='apple-app-site-association'),
     # path('api/docs/kaznikaz/version1/testpush',views.TestPush),
     path('api/docs/kaznikaz/version1/testnot',views.testNot),
-    path('api/docs/kaznikaz/version1/registerToken',views.RegisterToken)
+    path('api/docs/kaznikaz/version1/registerToken',views.RegisterToken),
+    re_path(r'^media/(?P<path>.*)$',serve,{'document_root':settings.MEDIA_ROOT}),
     
     # path('api/docs/kaznikaz/version1/news',views.NewsViews.as_view()),
     
