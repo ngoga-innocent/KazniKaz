@@ -20,21 +20,22 @@ load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+#BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-tq2faq55n=45w^b%ovp%h7s!@me))+!mca$#*&f=pij#dg5%ig'
-SECRET_KEY=os.environ.get("SECRET_KEY")
+SECRET_KEY = 'django-insecure-tq2faq55n=45w^b%ovp%h7s!@me))+!mca$#*&f=pij#dg5%ig'
+#SECRET_KEY=os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = os.environ.get("DEBUG","false").lower()=="true"
 DEBUG=False
 
 # ALLOWED_HOSTS = ['localhost', '192.168.1.68:8001',
 #                  '10.0.2.2:8001', 'b0eb-2c0f-eb68-62c-9f00-b9de-ba13-67d9-164e.ngrok-free.app']
-ALLOWED_HOSTS=os.environ.get("ALLOWED_HOSTS").split(" ")
-# ALLOWED_HOSTS=['*']
+#ALLOWED_HOSTS=os.environ.get("ALLOWED_HOSTS").split(" ")
+ALLOWED_HOSTS=['*']
 # AUTHENTICATION BACKENDS
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
@@ -148,8 +149,8 @@ DATABASES = {
         'NAME': BASE_DIR / 'Db',
     }
 }
-database_url=os.environ.get("DATABASE_URL")
-DATABASES['default']=dj_database_url.parse(database_url)
+# database_url=os.environ.get("DATABASE_URL")
+# DATABASES['default']=dj_database_url.parse(database_url)
 
 #postgres://mobileshopdb_user:xePI0x6hUp4g56iSJJjQIfsPA3no6O7w@dpg-cj9129ivvtos73840hlg-a.oregon-postgres.render.com/mobileshopdb
 # Password validation
@@ -187,10 +188,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 # STATIC_URL = 'API/static/'
-STATIC_URL= os.path.join(BASE_DIR, 'static/')
+# STATIC_URL= os.path.join(BASE_DIR, 'static/')
+STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
+]
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',  # Only if you have additional static directories outside 'staticfiles'
 ]
 # STATICFILES_DIRS=[
 #     BASE_DIR / "static"
@@ -201,7 +206,7 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = "/media/"
-STATICFILES_STORAGE="whitenoise.storage.CompressedManifestStaticFilesStorage"
+# STATICFILES_STORAGE="whitenoise.storage.CompressedManifestStaticFilesStorage"
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.SessionAuthentication',  # Enable session authentication
