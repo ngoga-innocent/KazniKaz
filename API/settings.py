@@ -150,9 +150,10 @@ DATABASES = {
     }
 }
 # database_url=os.environ.get("DATABASE_URL")
-# DATABASES['default']=dj_database_url.parse(database_url)
 
-#postgres://mobileshopdb_user:xePI0x6hUp4g56iSJJjQIfsPA3no6O7w@dpg-cj9129ivvtos73840hlg-a.oregon-postgres.render.com/mobileshopdb
+database_url='postgres://kaznikaz_4na7_user:qHGXapDLdQqPQzL0fLvLTuknhBQoTebq@dpg-cp8jugf109ks739sdu9g-a.oregon-postgres.render.com/kaznikaz_4na7'
+#database_url='postgres://mobileshopdb_user:xePI0x6hUp4g56iSJJjQIfsPA3no6O7w@dpg-cj9129ivvtos73840hlg-a.oregon-postgres.render.com/mobileshopdb'
+DATABASES['default']=dj_database_url.parse(database_url)
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -206,7 +207,7 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = "/media/"
-# STATICFILES_STORAGE="whitenoise.storage.CompressedManifestStaticFilesStorage"
+STATICFILES_STORAGE="whitenoise.storage.CompressedManifestStaticFilesStorage"
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.SessionAuthentication',  # Enable session authentication
